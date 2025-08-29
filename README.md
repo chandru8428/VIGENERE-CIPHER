@@ -1,4 +1,4 @@
-# VIGENERE-CIPHER
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/75400ffb-aa2f-43a1-9344-80438f9ada59" /># VIGENERE-CIPHER
 ## EX. NO: 4
  
 
@@ -30,7 +30,45 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
 ## PROGRAM
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
+void generateKey(char *plaintext, char *key, char *newKey) {
+    int pLen = strlen(plaintext), kLen = strlen(key), i, j;
+    for (i = 0, j = 0; i < pLen; i++, j++) {
+        if (j == kLen) j = 0;
+        newKey[i] = key[j];
+    }
+    newKey[i] = '\0';
+}
+
+void encrypt(char *plaintext, char *key, char *ciphertext) {
+    int i;
+    for (i = 0; plaintext[i] != '\0'; i++) {
+        ciphertext[i] = ((toupper(plaintext[i]) - 'A') + (toupper(key[i]) - 'A')) % 26 + 'A';
+    }
+    ciphertext[i] = '\0';
+}
+
+int main() {
+    char plaintext[100], key[100], newKey[100], ciphertext[100];
+
+    printf("Enter Plaintext: ");
+    scanf("%s", plaintext);
+    printf("Enter Key: ");
+    scanf("%s", key);
+
+    generateKey(plaintext, key, newKey);
+    encrypt(plaintext, newKey, ciphertext);
+
+    printf("Ciphertext: %s\n", ciphertext);
+
+    return 0;
+}
+```
 ## OUTPUT
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/0f10a511-a162-46bf-9271-d43d93ffef95" />
 
 ## RESULT
